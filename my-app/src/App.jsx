@@ -16,7 +16,7 @@ import PlaceOrder from './pages/PlaceOrder.jsx';
 import Order from './pages/Order.jsx';
 
 function App() {
-  const { loading, userData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const location = useLocation();
 
   const hideNavPaths = ['/login', '/signup'];
@@ -27,6 +27,7 @@ function App() {
       {!shouldHideNav && <Nav />}
 
       <Routes>
+        {/* Auth Routes */}
         <Route
           path="/login"
           element={
@@ -49,72 +50,15 @@ function App() {
           }
         />
 
-        <Route
-          path="/"
-          element={
-            userData ? (
-              <Home />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
+        {/* ✅ Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/productdetail/:productId" element={<ProductDetail />} />
 
-        <Route
-          path="/about"
-          element={
-            userData ? (
-              <About />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
-
-        <Route
-          path="/collection"
-          element={
-            userData ? (
-              <Collection />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
-
-        <Route
-          path="/contact"
-          element={
-            userData ? (
-              <Contact />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
-
-        <Route
-          path="/productdetail/:productId"
-          element={
-            userData ? (
-              <ProductDetail />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
-
-        <Route
-          path="/product"
-          element={
-            userData ? (
-              <Product />
-            ) : (
-              <Navigate to="/login" state={{ from: location.pathname }} />
-            )
-          }
-        />
-
+        {/* 🔒 Protected Routes */}
         <Route
           path="/cart"
           element={
@@ -137,7 +81,7 @@ function App() {
           }
         />
 
-  <Route
+        <Route
           path="/order"
           element={
             userData ? (
@@ -147,10 +91,9 @@ function App() {
             )
           }
         />
-
       </Routes>
 
-      {/* ✅ WhatsApp Button har page pe (login/signup ke alawa) show hoga */}
+      {/* ✅ WhatsApp Button (login/signup ke alawa show hoga) */}
       {!shouldHideNav && <WhatsAppButton />}
     </>
   );

@@ -70,7 +70,7 @@ loadOrderData()
                <div className='flex items-center'>
   <p className='md:text-[18px] text-[12px] text-black'>
     Date:
-    <span className='text-[#e4fbff] pl-[10px] md:text-[16px] text-[11px]'>
+    <span className='text-[#000000] pl-[10px] md:text-[16px] text-[11px]'>
       {item.date && !isNaN(new Date(item.date))
         ? new Date(item.date).toLocaleDateString("en-GB", {
             day: "2-digit",
